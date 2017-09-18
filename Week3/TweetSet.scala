@@ -158,7 +158,7 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
   */
     def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
       //if that element satisfies p accumulate on acc
-      if (p(elem) == true) left.filterAcc(p, right.filterAcc(p,acc.incl(elem)))
+      if (p(elem)) left.filterAcc(p, right.filterAcc(p,acc.incl(elem)))
       else left.filterAcc(p, right.filterAcc(p, acc)) // keep looking on left set and right set
     }
     def mostRetweeted: Tweet = this.mostRetweetedAcc(this.elem) //start from elem
